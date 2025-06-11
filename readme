@@ -10,8 +10,8 @@ A premium, responsive, and interactive **To-Do List Web App** built using **HTML
 - ✏️ **Edit Tasks** anytime via a modal.
 - ❌ **Delete Tasks** with a single click.
 - 📅 **Deadline Status Highlighting**:
-  - 🔴 Red: Deadline Today or Tomorrow (High Priority)
-  - 🟡 Yellow: Missed Deadlines
+  - 🔴 Red: Missed Deadlines Deadline Today or Tomorrow (High Priority)
+  - 🟡 Yellow: Deadline Today or Tomorrow (High Priority)
 - 💾 **Local Storage Integration**: Your tasks stay saved even after refresh.
 - 🧑 **User Toggle**: Click user icon to reveal username and toggle back.
 
@@ -53,9 +53,10 @@ A premium, responsive, and interactive **To-Do List Web App** built using **HTML
 
 ## 📸 Screenshots
 
-(./assets/todoprev1.png)
-(./assets/todoprev2.png)
-(./assets/todoprev3.png)
+![Screenshot 1](./assets/todoprev1.png)
+![Screenshot 2](./assets/todoprev2.png)
+![Screenshot 3](./assets/todoprev3.png)
+
 
 
 ## 🧪 Future Enhancements
