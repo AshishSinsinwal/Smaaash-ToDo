@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+  <h1>To Do Smaaaash It!</h1>
+  <div id="user">
+    <i class="fa-solid fa-user" id="user-icon"></i>
+    <div id="user-name" style="display: none;">Ashish Sinsinwal</div>
+  </div>
+</nav>
+
+
+    <div id="add-task-template">
+        <div class="add-task-layout">
+            <h1>New Task <i class="fa-solid fa-xmark"></i> </h1>
+            <label for="newtask">Task:</label>
+            <input type="text" name="newtask" id="newtask" required maxlength="40">
+            <label for="deadline">deadline</label>
+            <input type="date" name="deadline" id="deadline">
+            <button id="task-added">Smaaash it !</button>
+        </div>
+        
+    </div>
+
+<div class="abt-task">
+        <div class="abt-task-layout">
+            <div class="abt-task-head">
+                <h1>name of task  </h1> <i class="fa-solid fa-xmark"></i> 
+            </div>
+             
+            <span>deadline</span>
+            <button id="edit">want to edit</button>
+         <button id="del">delete task</button>
+        </div>
+        </div>
+
+
+    <div class="edit-page">
+        <div class="add-task-layout">
+            <h1>Editing.... <i class="fa-solid fa-xmark" id="close"></i> </h1>
+            <label for="newtask">Task Name:</label>
+            <input type="text" name="newtask" id="newtask" required maxlength="40">
+            <label for="deadline">deadline</label>
+            <input type="date" name="deadline" id="deadline">
+            <button id="task-added">Save</button>
+        </div>
+    </div>
+
+
+
+
+    <main>
+       <div id="add-task">
+        <div class="add-icon">
+             <i class="fa-solid fa-plus" id="plus-task"></i>
+        </div>
+    
+       </div>
+
+       <div class="task-to-compl">
+        <h1>Task to be completed</h1>
+        <ul>
+            
+             
+        </ul>
+       </div>
+      
+    </main>
+    <footer>Made with &hearts; by Ashish Sinsinwal</footer>
+</body>
+<script src="app.js"></script>
+</html>

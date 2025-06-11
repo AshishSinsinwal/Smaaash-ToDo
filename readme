@@ -1,0 +1,75 @@
+# ✅ To-Do Smaaaash It! 🧠💥
+
+A premium, responsive, and interactive **To-Do List Web App** built using **HTML, CSS, and JavaScript** with features like task creation, editing, deletion, deadlines, and persistent storage using `localStorage`.
+
+---
+
+## 🚀 Features
+
+- 📝 **Add Tasks** with custom titles and deadlines.
+- ✏️ **Edit Tasks** anytime via a modal.
+- ❌ **Delete Tasks** with a single click.
+- 📅 **Deadline Status Highlighting**:
+  - 🔴 Red: Deadline Today or Tomorrow (High Priority)
+  - 🟡 Yellow: Missed Deadlines
+- 💾 **Local Storage Integration**: Your tasks stay saved even after refresh.
+- 🧑 **User Toggle**: Click user icon to reveal username and toggle back.
+
+---
+
+## 🎨 Technologies Used
+
+- **HTML5** – Markup structure
+- **CSS3** – Custom styling and responsive layout
+- **JavaScript (Vanilla)** – DOM manipulation, event handling, task logic
+- **Font Awesome** – Beautiful icons
+
+---
+
+## 🖼️ Preview
+
+> _Live preview coming soon_
+
+---
+
+## 🧠 How It Works
+
+1. Click ➕ to add a new task.
+2. Provide task name and optional deadline.
+3. View added tasks under “Task to be completed”.
+4. Click a task to view details (edit/delete).
+5. Task deadlines are highlighted based on urgency.
+
+---
+
+## 📁 Folder Structure
+┣ 📄 assets
+┣ 📄 index.html
+┣ 📄 style.css
+┣ 📄 app.js
+
+
+---
+
+## 📸 Screenshots
+
+(./assets/todoprev1.png)
+(./assets/todoprev2.png)
+(./assets/todoprev3.png)
+
+
+## 🧪 Future Enhancements
+
+- 🔔 Notifications for upcoming/missed deadlines
+- 📱 Mobile-friendly popups
+- 📊 Analytics (task count, completed vs pending)
+- 🧩 User login and profiles
+
+---
+
+## 🙌 Author
+
+Built with ❤️ by **Ashish Sinsinwal**
+
+---
+
