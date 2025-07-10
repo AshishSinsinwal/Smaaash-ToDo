@@ -1,79 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To Do</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <nav>
-  <h1>To Do Smaaaash It!</h1>
-  <div id="user">
-    <i class="fa-solid fa-user" id="user-icon"></i>
-    <div id="user-name" style="display: none;">Ashish Sinsinwal</div>
+
+  <!-- Add Task Modal -->
+  <div id="add-task-template">
+    <div class="add-task-layout" novalidate>
+      <h1>New Task <i class="fa-solid fa-xmark"></i></h1>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="newtask" class="form-label">Task:</label>
+          <input type="text" class="form-control" name="newtask" id="newtask" required maxlength="10" />
+        </div>
+        <div class="col-md-6">
+          <label for="deadline" class="form-label">Deadline:</label>
+          <input type="date" class="form-control" name="deadline" id="deadline" />
+        </div>
+        <button class="mt-5" id="task-added">Smaaash <i class="fa-solid fa-floppy-disk"></i></button>
+      </div>
+    </div>
   </div>
-</nav>
 
+  <!-- About Task Modal -->
+  <div class="abt-task">
+    <div class="abt-task-layout">
+      <div class="abt-task-head">
+        <h1>name of task</h1>
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <span>deadline</span>
+      <div class="row offset-1">
+        <button class="col-md-5 mt-2 me-5" id="edit">Edit <i class="fa-solid fa-pen"></i></button>
+        <button class="col-md-5 mt-2" id="del">Delete <i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>
+  </div>
 
-    <div id="add-task-template">
-        <div class="add-task-layout">
-            <h1>New Task <i class="fa-solid fa-xmark"></i> </h1>
-            <label for="newtask">Task:</label>
-            <input type="text" name="newtask" id="newtask" required maxlength="40">
-            <label for="deadline">deadline</label>
-            <input type="date" name="deadline" id="deadline">
-            <button id="task-added">Smaaash it !</button>
-        </div>
-        
+  <!-- Edit Task Modal -->
+  <div class="edit-page">
+    <div class="add-task-layout">
+      <h1>Editing... <i class="fa-solid fa-xmark" id="close"></i></h1>
+      <label class="form-label" for="newtask">Task Name:</label>
+      <input class="form-control" type="text" name="newtask" id="newtask" required maxlength="10" />
+      <label class="form-label" for="deadline">Deadline:</label>
+      <input class="form-control" type="date" name="deadline" id="deadline" />
+      <button id="task-added">Update <i class="fa-solid fa-floppy-disk"></i></button>
+    </div>
+  </div>
+
+  <!-- Main Section -->
+  <main>
+    <!-- Add Task Button -->
+    <div id="add-task">
+      <div id="add-icon">
+        <i class="fa-solid fa-plus" id="plus-task"></i>
+      </div>
     </div>
 
-<div class="abt-task">
-        <div class="abt-task-layout">
-            <div class="abt-task-head">
-                <h1>name of task  </h1> <i class="fa-solid fa-xmark"></i> 
-            </div>
-             
-            <span>deadline</span>
-            <button id="edit">want to edit</button>
-         <button id="del">delete task</button>
-        </div>
-        </div>
-
-
-    <div class="edit-page">
-        <div class="add-task-layout">
-            <h1>Editing.... <i class="fa-solid fa-xmark" id="close"></i> </h1>
-            <label for="newtask">Task Name:</label>
-            <input type="text" name="newtask" id="newtask" required maxlength="40">
-            <label for="deadline">deadline</label>
-            <input type="date" name="deadline" id="deadline">
-            <button id="task-added">Save</button>
-        </div>
+    <!-- Task List -->
+    <div class="task-to-compl">
+      <h1><i class="fa-solid fa-list-check"></i> All Tasks</h1>
+      <ul></ul>
     </div>
+  </main>
 
 
-
-
-    <main>
-       <div id="add-task">
-        <div class="add-icon">
-             <i class="fa-solid fa-plus" id="plus-task"></i>
-        </div>
-    
-       </div>
-
-       <div class="task-to-compl">
-        <h1>Task to be completed</h1>
-        <ul>
-            
-             
-        </ul>
-       </div>
-      
-    </main>
-    <footer>Made with &hearts; by Ashish Sinsinwal</footer>
+  <!-- JavaScript Files -->
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
-<script src="app.js"></script>
 </html>

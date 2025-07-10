@@ -1,12 +1,16 @@
+/* ========================================
+   TASK MANAGER - ORGANIZED JAVASCRIPT
+   ======================================== */
+
+// ========================================
+// DOM ELEMENTS
+// ========================================
 const main = document.querySelector("main");
-const plusBtn = document.getElementById("plus-task");
+const addIcon = document.querySelector("#add-icon");
 const taskForm = document.getElementById("add-task-template");
 const taskList = document.querySelector(".task-to-compl ul");
 const abtTask = document.querySelector(".abt-task");
 const editPage = document.querySelector(".edit-page");
-const userIcon = document.getElementById("user-icon");
-const userName = document.getElementById("user-name");
-
 
 // Form Elements
 const newTaskInput = document.getElementById("newtask");
@@ -16,86 +20,78 @@ const taskAddBtn = document.getElementById("task-added");
 // State
 let currentTask = null;
 
-// Initialize Event Listeners
+// ========================================
+// INITIALIZATION
+// ========================================
+function initApp() {
+  initEventListeners();
+  loadSavedTasks();
+}
+
 function initEventListeners() {
-  // Task Form
-  plusBtn.addEventListener("click", showTaskForm);
+  // Task Form Events
+  addIcon.addEventListener("click", showTaskForm);
   document.querySelector("#add-task-template i").addEventListener("click", hideTaskForm);
   taskAddBtn.addEventListener("click", handleAddTask);
   
-  // Task List
+  // Task List Events
   taskList.addEventListener("click", handleTaskListClick);
   
-  // Task Details Panel
+  // Task Details Events
   document.querySelector(".abt-task #del").addEventListener("click", deleteCurrentTask);
   document.querySelector(".abt-task i").addEventListener("click", hideTaskDetails);
   document.getElementById("edit").addEventListener("click", showEditForm);
   
-  // Edit Form
+  // Edit Form Events
   document.getElementById("close").addEventListener("click", hideEditForm);
   document.querySelector(".edit-page #task-added").addEventListener("click", saveEditedTask);
 }
 
-// Load all saved tasks when page loads
+// ========================================
+// TASK LOADING & STATUS
+// ========================================
 function loadSavedTasks() {
-  // Clear existing tasks in the UI (if any)
   taskList.innerHTML = '';
   
-  // Get all tasks from localStorage
   const tasks = [];
   for (let i = 0; i < localStorage.length; i++) {
     const taskName = localStorage.key(i);
-    // Skip any non-task items you might have in localStorage
     if (taskName && taskName !== "someOtherKeyYouMightHave") {
       tasks.push({
         name: taskName,
-        deadline: localStorage.getItem(taskName)
+        deadline: localStorage.getItem(taskName) || "No Deadline"
       });
     }
   }
   
-  // Add tasks to the UI
   tasks.forEach(task => {
-   
-    if(task.deadline){
-        const status = checkDateStatus(task.deadline);
-        addTaskToList(task.name, task.deadline, status);
-
-
+    if (task.deadline) {
+      const status = checkDateStatus(task.deadline);
+      addTaskToList(task.name, task.deadline, status);
     }
-
   });
 }
-
-
 
 function checkDateStatus(inputDateStr) {
   const inputDate = new Date(inputDateStr);
   const today = new Date();
 
-  // Remove time part from both dates
   inputDate.setHours(0, 0, 0, 0);
   today.setHours(0, 0, 0, 0);
 
-  // Calculate difference in milliseconds
   const diffInMs = inputDate - today;
-
-  // Convert to days
   const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
 
   if (diffInDays === 0 || diffInDays === 1) {
-    console.log("attention")
     return "attention";
   } else if (diffInDays < 0) {
-    console.log("missed");
     return "missed";
-  } 
+  }
 }
 
-
-
-
-// Task Form Functions
+// ========================================
+// TASK FORM FUNCTIONS
+// ========================================
 function showTaskForm() {
   taskForm.style.display = "block";
   main.style.opacity = "0.5";
@@ -111,55 +107,67 @@ function handleAddTask() {
   const taskName = newTaskInput.value.trim();
   const deadline = deadlineInput.value;
   
-  if (!taskName) return;
+  if (!validateTask(taskName)) return;
   
   saveTask(taskName, deadline);
   addTaskToList(taskName, deadline);
   
-  // Reset form
   newTaskInput.value = "";
   deadlineInput.value = "";
   hideTaskForm();
 }
 
-// Task List Functions
+function validateTask(taskName) {
+  if (!taskName) {
+    newTaskInput.classList.add("is-invalid");
+    alert("Task is required.");
+    return false;
+  }
+  
+  newTaskInput.classList.remove("is-invalid");
+  return true;
+}
+
+// ========================================
+// TASK LIST FUNCTIONS
+// ========================================
 function handleTaskListClick(e) {
   const li = e.target.closest("li");
   if (!li) return;
   
-  if (e.target.tagName === "BUTTON") {
-    // Delete task
+  if (e.target.tagName === "BUTTON" || e.target.tagName === "I") {
     const taskName = li.querySelector(".task-name").textContent;
     li.remove();
     deleteTask(taskName);
   } else {
-    // Show task details
     const taskName = li.querySelector(".task-name").textContent;
     showTaskDetails(taskName);
   }
 }
+
 function addTaskToList(taskName, deadline, taskAttention) {
   const li = document.createElement("li");
   
-  // Fixed template literal with backticks
   li.innerHTML = `
     <span class="task-name">${taskName}</span>
     <span class="task-deadline">${deadline || 'No deadline'}</span>
-    <button class="task-done">✓</button>
+    <button class="task-done">
+      <i class="fa-solid fa-circle-check"></i>
+    </button>
   `;
   
-  // More robust class assignment
   if (taskAttention === "attention") {
     li.classList.add("task-attention");
   } else if (taskAttention === "missed") {
     li.classList.add("task-missed");
   }
-  // Optional: else case if needed
   
   taskList.appendChild(li);
 }
 
-// Task Details Functions
+// ========================================
+// TASK DETAILS FUNCTIONS
+// ========================================
 function showTaskDetails(taskName) {
   currentTask = taskName;
   
@@ -191,7 +199,9 @@ function deleteCurrentTask() {
   hideTaskDetails();
 }
 
-// Edit Form Functions
+// ========================================
+// EDIT FORM FUNCTIONS
+// ========================================
 function showEditForm() {
   if (!currentTask) return;
   
@@ -214,13 +224,11 @@ function saveEditedTask() {
   
   if (!newName) return;
   
-  // Update in storage
   if (currentTask !== newName) {
     deleteTask(currentTask);
   }
   saveTask(newName, newDeadline);
   
-  // Update in UI
   const taskItems = document.querySelectorAll(".task-name");
   taskItems.forEach(item => {
     if (item.textContent === currentTask) {
@@ -236,19 +244,12 @@ function saveEditedTask() {
   hideEditForm();
 }
 
-userIcon.addEventListener("click", () => {
-  userIcon.style.display = "none";
-  userName.style.display = "inline-block";
-});
-
-userName.addEventListener("click", () => {
-  userName.style.display = "none";
-  userIcon.style.display = "inline-block";
-});
-
-// Storage Functions
+// ========================================
+// STORAGE FUNCTIONS
+// ========================================
 function saveTask(taskName, deadline) {
   localStorage.setItem(taskName, deadline);
+  location.reload();
 }
 
 function getTaskDeadline(taskName) {
@@ -257,13 +258,10 @@ function getTaskDeadline(taskName) {
 
 function deleteTask(taskName) {
   localStorage.removeItem(taskName);
+  location.reload();
 }
 
-// Initialize the app
-function initApp() {
-  initEventListeners();
-  loadSavedTasks(); // Load saved tasks when app starts
-}
-
-// Start the application
+// ========================================
+// START APPLICATION
+// ========================================
 initApp();

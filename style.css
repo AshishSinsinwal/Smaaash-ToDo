@@ -1,4 +1,10 @@
-/* Reset & Base */
+/* ========================================
+   TASK MANAGER - ORGANIZED CSS
+   ======================================== */
+
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
 * {
   margin: 0;
   padding: 0;
@@ -13,45 +19,11 @@ body {
   color: #333;
 }
 
-/* Navigation */
-nav {
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #4a47a3;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
+/* ========================================
+   LAYOUT COMPONENTS
+   ======================================== */
 
-nav h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-#user {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
-  gap: 0.5rem;
-}
-
-#user-name {
-  font-size: 1rem;
-}
-#user i {
-    font-size: 1.5rem;
-}
-
-
-/* Main Layout */
+/* Main Container */
 main {
   display: flex;
   flex-wrap: wrap;
@@ -59,11 +31,28 @@ main {
   gap: 2rem;
 }
 
-/* Add Task Button */
+/* Headings */
+h1 {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
+  background: linear-gradient(to right, #0a191f, #203a43, #2c5364);
+}
+
+label {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* ========================================
+   ADD TASK SECTION
+   ======================================== */
+
+/* Add Task Container */
 #add-task {
   background-color: white;
-  height: 200px;
-  width: 300px;
+  height: 400px;
+  width: 400px;
   border-radius: 1rem;
   display: flex;
   justify-content: center;
@@ -73,34 +62,33 @@ main {
   transition: transform 0.2s;
 }
 
-#add-task:hover {
-  transform: scale(1.02);
-}
-
-.add-icon {
-  height: 10rem;
-  width: 10rem;
-  background-color: #4a47a3;
+/* Add Task Icon */
+#add-icon {
+  height: 15rem;
+  width: 15rem;
+  background: linear-gradient(to right, #0a191f, #203a43, #2c5364);
   color: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background 0.3s;
-}
-
-#plus-task {
-  font-size: 4rem;
+  transition: 0.3s ease;
   cursor: pointer;
 }
 
-h1{
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    color: white;
+#add-icon:hover {
+  transform: scale(1.07);
 }
 
-/* Modal Templates */
+#plus-task {
+  font-size: 7rem;
+}
+
+/* ========================================
+   MODAL COMPONENTS
+   ======================================== */
+
+/* Base Modal Styles */
 #add-task-template,
 .abt-task,
 .edit-page {
@@ -118,11 +106,7 @@ h1{
   display: none;
 }
 
-ul li {
- display: flex;
- justify-content: center;
- justify-content: space-between;
-}
+/* Modal Layouts */
 .add-task-layout,
 .abt-task-layout {
   display: flex;
@@ -130,39 +114,73 @@ ul li {
   gap: 1rem;
 }
 
-.add-task-layout h1 {
-  font-size: 1.6rem;
-  background-color: #4a47a3;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .abt-task-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
   background: white;
   padding: 1rem;
   border-radius: 8px;
 }
 
+.abt-task-layout span{
+  text-align: center;
+}
+/* Modal Headers */
+.add-task-layout h1 {
+  font-size: 1.6rem;
+  background: linear-gradient(to right, #0a191f, #203a43, #2c5364);
+  display: flex;
+  border-radius: 1rem;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
 
-.abt-task-head{
-    background-color: #4a47a3;
-    border-radius: 0.5rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
- }
+.add-task-layout h1 i {
+  cursor: pointer;
+}
+
+.add-task-layout h1 i:hover {
+  transform: scale(1.1);
+  color: red;
+}
+
+.abt-task-head {
+  background: linear-gradient(to right, #0a191f, #203a43, #2c5364);
+  border-radius: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 0rem 1rem;
+}
+
+
 .abt-task-head h1 {
-    width: 95%;
-}
-.abt-task-head i{
-    margin-right: 1rem;
-    color: white;
-    font-size: 1.5rem;
+  width: 95%;
 }
 
+.abt-task-head i {
+  margin-right: 1rem;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
+.abt-task-head i:hover {
+  transform: scale(1.2);
+  color: red;
+}
+
+/* ========================================
+   FORM ELEMENTS
+   ======================================== */
+
+/* Input Fields */
 input[type="text"],
 input[type="date"] {
   font-size: 1rem;
@@ -172,22 +190,63 @@ input[type="date"] {
   width: 100%;
 }
 
+/* Validation Styles */
+.is-invalid {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+}
+
+/* Button Styles */
 button {
   padding: 0.7rem 1.2rem;
-  background-color: #6c63ff;
-  color: white;
+  background-color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.2rem !important;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border-radius: 1rem !important;
 }
 
 button:hover {
-  background-color: #5548e0;
+  border-radius: 1rem;
 }
 
-/* Task Section */
+/* Specific Button Styles */
+#edit,
+#del {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.75), white);
+  min-width: 10rem;
+  height: fit-content;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  color: white;
+  transition: 0.3s ease;
+}
+
+#del:hover {
+  color: red;
+  transform: translateY(-1px);
+  background: linear-gradient(to right, white, rgba(0, 0, 0, 0.75));
+}
+
+#edit:hover,
+#task-added:hover {
+  color: green;
+  transform: translateY(-1px);
+  background: linear-gradient(to right, white, rgba(0, 0, 0, 0.75));
+}
+
+#task-added {
+  transition: 0.3s ease;
+  color: white;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.75), white);
+}
+
+/* ========================================
+   TASK SECTION
+   ======================================== */
+
+/* Task Container */
 .task-to-compl {
   flex-grow: 1;
   background-color: white;
@@ -195,63 +254,86 @@ button:hover {
   padding: 1.5rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   max-width: 600px;
+  max-height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
 }
 
 .task-to-compl h1 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #4a4e69;
+  color: white;
+  width: 100%;
+  text-align: center;
+  border-radius: 1rem;
 }
 
+/* Task Lists */
 .task-to-compl ul {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  width: 100%;
 }
 
+ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Task Items */
 li {
   background: #f7f7f7;
   margin: 0.5rem 0;
   padding: 0.8rem 1rem;
-  border-radius: 8px;
+  border-radius: 1rem;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 li:hover {
   background: #e0e0ff;
+  transform: translateY(-2px);
 }
 
+.task-to-compl ul li span {
+  font-size: 1.2rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.task-to-compl ul li i:hover {
+  color: green;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   TASK STATUS INDICATORS
+   ======================================== */
+
+/* Task Attention */
 .task-attention {
-  
   background-color: #fff9db;
   border-left: 5px solid #ffc107;
 }
 
-
+/* Task Missed */
 .task-missed {
   background-color: #ffe5e5;
   border-left: 5px solid #ff4d4d;
 }
 
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
 
-
-/* Footer */
-footer {
-  width: 100vw;
-  padding: 1rem;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background-color: #4a47a3;
-  color: white;
-  text-align: center;
-  font-size: 1rem;
-}
-
-
-
-
-
-/* Responsive */
 @media (max-width: 768px) {
   main {
     flex-direction: column;
@@ -264,5 +346,14 @@ footer {
 
   .task-to-compl {
     width: 100%;
+  }
+
+  .task-to-compl ul li {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .task-to-compl ul li button {
+    width: 90%;
   }
 }
